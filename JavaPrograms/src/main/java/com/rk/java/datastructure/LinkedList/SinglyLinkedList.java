@@ -1,104 +1,69 @@
 package com.rk.java.datastructure.LinkedList;
 
-public class SinglyLinkedList {
-	
-	public static void main(String[] args) {
-		
-		Node n = new Node();
-		
-		n.insertNode(5);
-		n.insertNode(10);
-		
-		n.display();
-		
-		n.insertAtPos(25, 2);
-		
-		n.display();
-		
-		n.deleteNode(10);
-		n.display();
-	}
-
-}
-
-
-class Node{
-	Node link=null;
-	Node start=null;
-	Node end=null;
-	int data;
-	
-	Node(){
-		
-	}
-	Node(int d){
-		this.data =d;
-		
-	}
-	
-	public void insertNode(int inp) {
-		
-		if(start == null) {
-			
-			Node n = new Node(inp);
-			start = n;
-			end =n;
-			end.link=null;
-			
-			
-		}else {
-			Node n = new Node(inp);
-			end.link=n;
-			end=n;
-			n.link=null;
-		}
-	}
-	
-	public void insertAtPos(int data, int pos) {
-		
-		int count=0;
-		Node tmp= start;
-		Node n1=tmp;
-		
-		while(count < pos) {
-			
-			count++;
-			n1=tmp;
-			tmp=tmp.link;
-		}
-		
-		Node new1 = new Node(data);
-		
-		new1.link = tmp;
-		n1.link=new1;
-		
-		
-	}
-	
-	public void deleteNode(int data) {
-		
-		Node tmp=start;
-		Node n1= tmp;
-		
-		while(tmp.data != data) {
-			
-			n1=tmp;
-			tmp = tmp.link;
-		}
-		
-		n1.link = tmp.link;
-	}
-	
-	public void display() {
-		
-		Node p = start;
-		System.out.println();
-		while(p!=null) {
-			System.out.print(p.data);
-			System.out.print("=>");
-			p= p.link;
-		}
-		
-		System.out.print("null");
-	}
-}
+public class SinglyLinkedList {    
+    //Represent a node of the singly linked list    
+    class Node{    
+        int data;    
+        Node next;    
+            
+        public Node(int data) {    
+            this.data = data;    
+            this.next = null;    
+        }    
+    }    
+     
+    //Represent the head and tail of the singly linked list    
+    public Node head = null;    
+    public Node tail = null;    
+        
+    //addNode() will add a new node to the list    
+    public void addNode(int data) {    
+        //Create a new node    
+        Node newNode = new Node(data);    
+            
+        //Checks if the list is empty    
+        if(head == null) {    
+            //If list is empty, both head and tail will point to new node    
+            head = newNode;    
+            tail = newNode;    
+        }    
+        else {    
+            //newNode will be added after tail such that tail's next will point to newNode    
+            tail.next = newNode;    
+            //newNode will become new tail of the list    
+            tail = newNode;    
+        }    
+    }    
+        
+    //display() will display all the nodes present in the list    
+    public void display() {    
+        //Node current will point to head    
+        Node current = head;    
+            
+        if(head == null) {    
+            System.out.println("List is empty");    
+            return;    
+        }    
+        System.out.println("Nodes of singly linked list: ");    
+        while(current != null) {    
+            //Prints each node by incrementing pointer    
+            System.out.print(current.data + " ");    
+            current = current.next;    
+        }    
+        System.out.println();    
+    }    
+        
+    public static void main(String[] args) {    
+            
+        SinglyLinkedList sList = new SinglyLinkedList();    
+            
+        //Add nodes to the list    
+        sList.addNode(1);    
+        sList.addNode(2);    
+        sList.addNode(3);    
+        sList.addNode(4);    
+            
+        //Displays the nodes present in the list    
+        sList.display();    
+    }    
+}    
