@@ -1,6 +1,11 @@
 package com.rk.java.datastructure.LinkedList;
 
 public class SinglyLinkedList {    
+	
+    //Represent the head and tail of the singly linked list    
+    public Node head = null;    
+    public Node tail = null;  
+    
     //Represent a node of the singly linked list    
     class Node{    
         int data;    
@@ -12,9 +17,7 @@ public class SinglyLinkedList {
         }    
     }    
      
-    //Represent the head and tail of the singly linked list    
-    public Node head = null;    
-    public Node tail = null;    
+  
         
     //addNode() will add a new node to the list    
     public void addNode(int data) {    
@@ -34,6 +37,29 @@ public class SinglyLinkedList {
             tail = newNode;    
         }    
     }    
+    
+    
+    public void insertAtPos(int data, int pos) {
+    	
+    	Node newNode = new Node(data);
+    	Node runner = head;
+    	Node follower = head;
+    	
+    	int posCount =1;
+    	
+    	while(posCount != pos) {
+    		follower = runner;
+    		runner = runner.next;
+    		posCount++;
+    		
+    	}
+    	
+    	follower.next = newNode;
+    	newNode.next = runner;
+    	
+    	
+    	
+    }
         
     //display() will display all the nodes present in the list    
     public void display() {    
@@ -47,7 +73,8 @@ public class SinglyLinkedList {
         System.out.println("Nodes of singly linked list: ");    
         while(current != null) {    
             //Prints each node by incrementing pointer    
-            System.out.print(current.data + " ");    
+            System.out.print(current.data + " "); 
+            System.out.print("=> ");
             current = current.next;    
         }    
         System.out.println();    
@@ -65,5 +92,9 @@ public class SinglyLinkedList {
             
         //Displays the nodes present in the list    
         sList.display();    
+        
+        sList.insertAtPos(10, 3);
+        
+        sList.display();
     }    
 }    
