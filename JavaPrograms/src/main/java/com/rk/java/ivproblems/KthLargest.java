@@ -1,10 +1,42 @@
 package com.rk.java.ivproblems;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.PriorityQueue;
 
 public class KthLargest {
+	
+	
+	public static int findKthLarg(List<Integer> ints, int k) {
+		
+		PriorityQueue<Integer> pq = new PriorityQueue<>();
+		for(int i=0;i<ints.size(); i++) {
+			pq.add(ints.get(i));
+			
+			if(pq.size() > k) {
+				pq.poll();
+			}
+		}
+		
+		return pq.peek();
+		
+	}
+	
+public static int findKthSmall(List<Integer> ints, int k) {
+		
+		PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+		for(int i=0;i<ints.size(); i++) {
+			pq.add(ints.get(i));
+			
+			if(pq.size() > k) {
+				pq.poll();
+			}
+		}
+		
+		return pq.peek();
+		
+	}
 	
 	// Function to find the K'th largest element in the
 		// array using min-heap
@@ -38,9 +70,14 @@ public class KthLargest {
 		public static void main(String[] args)
 		{
 			List<Integer> ints  = Arrays.asList(7, 4, 6, 3, 9, 1);
-			int k = 6;
+			int k = 2;
 
 			System.out.println("K'th largest element in the array is " +
 					FindKthLargest(ints, k));
+			System.out.println("K'th largest element in the array is " +
+					findKthLarg(ints, k));
+			
+			System.out.println("K'th Smallest element in the array is " +
+					findKthSmall(ints, k));
 		}
 }

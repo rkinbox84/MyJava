@@ -6,7 +6,7 @@ public class PascalTringal {
 		
 		PascalTringal pt = new PascalTringal();
 		
-		pt.printPascalTriangle(5);
+		pt.printPascalTriangle(10);
 		
 	}
 	
